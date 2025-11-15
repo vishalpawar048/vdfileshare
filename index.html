@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'"
+    />
+    <meta
+      http-equiv="X-Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'"
+    />
+    <title>File Share</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+        color: #2c3e50;
+        padding: 0;
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .container {
+        background: #ffffff;
+        border-radius: 16px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        padding: 40px;
+        max-width: 600px;
+        width: 90%;
+      }
+      h1 {
+        margin: 0 0 30px 0;
+        color: #2c3e50;
+        font-size: 28px;
+        font-weight: 600;
+      }
+      .button-group {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 30px;
+      }
+      button {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: #ffffff;
+        border: none;
+        padding: 14px 28px;
+        font-size: 15px;
+        font-weight: 500;
+        cursor: pointer;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        flex: 1;
+      }
+      button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+      }
+      button:active {
+        transform: translateY(0);
+      }
+      #stopBtn {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        box-shadow: 0 4px 15px rgba(245, 87, 108, 0.3);
+        display: none;
+      }
+      #stopBtn:hover {
+        box-shadow: 0 6px 20px rgba(245, 87, 108, 0.4);
+      }
+      #stopBtn.active {
+        display: block;
+      }
+      .info-section {
+        margin-top: 24px;
+        padding: 20px;
+        background: #f8f9fa;
+        border-radius: 8px;
+        border-left: 4px solid #667eea;
+      }
+      .label {
+        color: #6c757d;
+        font-size: 13px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 8px;
+      }
+      #filePath, #shareUrl {
+        color: #2c3e50;
+        word-break: break-all;
+        line-height: 1.6;
+        font-size: 14px;
+      }
+      #shareUrl a {
+        color: #667eea;
+        text-decoration: none;
+        font-weight: 500;
+        padding: 8px 12px;
+        background: #ffffff;
+        border-radius: 6px;
+        display: inline-block;
+        margin-top: 4px;
+        transition: all 0.2s ease;
+        border: 2px solid #e0e0e0;
+      }
+      #shareUrl a:hover {
+        background: #667eea;
+        color: #ffffff;
+        border-color: #667eea;
+      }
+      .status-indicator {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #28a745;
+        margin-right: 8px;
+        animation: pulse 2s infinite;
+      }
+      @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.5; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>📁 File Share</h1>
+      <div class="button-group">
+        <button id="selectFileBtn">Select Folder to Share</button>
+        <button id="stopBtn">Stop Sharing</button>
+      </div>
+      <div id="filePath"></div>
+      <div id="shareUrl"></div>
+    </div>
+    <script src="./renderer.js"></script>
+  </body>
+</html>
